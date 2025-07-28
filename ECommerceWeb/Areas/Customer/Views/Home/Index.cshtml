@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Product>
+
+<form asp-action="Index" method="get" class="mb-4">
+    <div class="row g-2">
+        <div class="col-md-3">
+            <input type="text" name="searchString" class="form-control" placeholder="Search title or author..." />
+        </div>
+        <div class="col-md-2">
+            <select name="categoryId" class="form-select">
+                <option value="">All Categories</option>
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="minPrice" step="0.01" class="form-control" placeholder="Min Price" />
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="maxPrice" step="0.01" class="form-control" placeholder="Max Price" />
+        </div>
+        <div class="col-md-1">
+            <button type="submit" class="btn btn-primary w-100">Filter</button>
+        </div>
+    </div>
+</form>
+
+
+<div class="row pb-3">
+    @foreach (var product in Model)
+    {
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2">
+                <div class="col-12 p-1">
+                    <div class="card border-0 p-3 shadow  border-top border-5 rounded">
+
+                        @if (product.ProductImages != null && product.ProductImages.Count() > 0)
+                        {
+                            <img src="@product.ProductImages.FirstOrDefault().ImageUrl" class="card-img-top rounded" />
+                        }
+                        else
+                        {
+                            <img src="https://placehold.co/500x600/png" class="card-img-top rounded" />
+                        }
+
+                        <div class="card-body pb-0">
+                            <div class="pl-1">
+                                <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@product.Title</p>
+                                <p class="card-title text-warning text-center">by <b>@product.Author</b></p>
+                            </div>
+                            <div class="pl-1">
+                                <p class="text-dark text-opacity-75 text-center mb-0">
+                                    List Price:
+                                    <span class="text-decoration-line-through">
+                                        @product.ListPrice.ToString("c")
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="pl-1">
+                                <p class="text-dark text-opacity-75 text-center">
+                                    As low as:
+                                    <span>
+                                        @product.Price100.ToString("c")
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <a asp-action="Details" 
+                            asp-route-productId="@product.Id"
+                            class="btn btn-primary bg-gradient border-0 form-control">
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
