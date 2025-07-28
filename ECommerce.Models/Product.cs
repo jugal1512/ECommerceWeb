@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using ECommerce.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -50,5 +51,6 @@ namespace BulkyBook.Models
 
         [ValidateNever]
         public List<ProductImage> ProductImages { get; set; }
+        public List<Review> Reviews { get; set; }
     }
 }
