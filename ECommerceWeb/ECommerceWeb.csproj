@@ -8,9 +8,13 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\**" />
+    <Compile Remove="wwwroot\images\product\**" />
     <Content Remove="Controllers\**" />
+    <Content Remove="wwwroot\images\product\**" />
     <EmbeddedResource Remove="Controllers\**" />
+    <EmbeddedResource Remove="wwwroot\images\product\**" />
     <None Remove="Controllers\**" />
+    <None Remove="wwwroot\images\product\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,10 +34,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ECommerce.DataAccess\ECommerce.DataAccess.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\images\product\" />
   </ItemGroup>
 
 </Project>

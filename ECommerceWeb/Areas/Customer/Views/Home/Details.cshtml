@@ -1,13 +1,14 @@
-﻿@model ShoppingCart
+﻿@using ECommerce.Models.ViewModels
+@model ProductDetailsVM
 
 <form method="post">
-    <input hidden asp-for="ProductId" />
+    <input type="hidden" asp-for="ShoppingCart.ProductId" />
     <div class="card shadow border-0 mt-4 mb-4">
         <div class="card-header bg-secondary bg-gradient text-light py-4">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h3 class="text-white text-uppercase">@Model.Product.Title</h3>
-                    <p class="text-white-50 fw-semibold mb-0">by @Model.Product.Author</p>
+                    <h3 class="text-white text-uppercase">@Model.ShoppingCart.Product.Title</h3>
+                    <p class="text-white-50 fw-semibold mb-0">by @Model.ShoppingCart.Product.Author</p>
                 </div>
             </div>
         </div>
@@ -22,32 +23,21 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-lg-3 offset-lg-1 text-center mb-3">
-
-
-
-
-                        @if (Model.Product.ProductImages != null && Model.Product.ProductImages.Count > 0)
+                        @if (Model.ShoppingCart.Product.ProductImages != null && Model.ShoppingCart.Product.ProductImages.Count > 0)
                         {
-                            <div id="carouselExampleIndicators" class="carousel  slide" data-bs-ride="carousel">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-indicators">
-
-                                    @foreach (var imageWithIndex in
-                                   Model.Product.ProductImages
-                                   .Select((image, index) => new { Image = image, Index = index }))
+                                    @foreach (var imageWithIndex in Model.ShoppingCart.Product.ProductImages.Select((image, index) => new { Image = image, Index = index }))
                                     {
                                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@imageWithIndex.Index"
-                                                class="@(imageWithIndex.Index==0?"active":"")" aria-current="true" aria-label="Slide 1"></button>
+                                                class="@(imageWithIndex.Index == 0 ? "active" : "")" aria-current="true" aria-label="Slide @imageWithIndex.Index"></button>
                                     }
-
-
                                 </div>
                                 <div class="carousel-inner">
-                                    @foreach (var imageWithIndex in
-                                   Model.Product.ProductImages
-                                   .Select((image, index) => new { Image = image, Index = index }))
+                                    @foreach (var imageWithIndex in Model.ShoppingCart.Product.ProductImages.Select((image, index) => new { Image = image, Index = index }))
                                     {
-                                        <div class="@(imageWithIndex.Index==0?"carousel-item active":"carousel-item")">
-                                            <img src="@imageWithIndex.Image.ImageUrl" class="d-block w-100" alt="...">
+                                        <div class="@(imageWithIndex.Index == 0 ? "carousel-item active" : "carousel-item")">
+                                            <img src="@imageWithIndex.Image.ImageUrl" class="d-block w-100" alt="Product Image">
                                         </div>
                                     }
                                 </div>
@@ -60,26 +50,21 @@
                                     <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
-
                         }
-
-
-
-
                     </div>
-                    <div class="col-12 col-lg-6 offset-lg-1">
 
+                    <div class="col-12 col-lg-6 offset-lg-1">
                         <div class="col-12 col-md-6 pb-4">
-                            <span class="badge">@Model.Product.Category.Name</span>
+                            <span class="badge">@Model.ShoppingCart.Product.Category.Name</span>
                         </div>
                         <div class="row ps-2">
-                            <h6 class="text-dark text-opacity-50 ">ISBN : @Model.Product.ISBN</h6>
+                            <h6 class="text-dark text-opacity-50">ISBN: @Model.ShoppingCart.Product.ISBN</h6>
                         </div>
                         <div class="row ps-2">
-                            <h6 class="text-dark text-opacity-50  pb-2">
+                            <h6 class="text-dark text-opacity-50 pb-2">
                                 List Price:
                                 <span class="text-decoration-line-through">
-                                    @Model.Product.ListPrice.ToString("c")
+                                    @Model.ShoppingCart.Product.ListPrice.ToString("c")
                                 </span>
                             </h6>
                         </div>
@@ -102,17 +87,17 @@
                                 <div>Price</div>
                             </div>
                             <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>@Model.Product.Price.ToString("c")</div>
+                                <div>@Model.ShoppingCart.Product.Price.ToString("c")</div>
                             </div>
                             <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>@Model.Product.Price50.ToString("c")</div>
+                                <div>@Model.ShoppingCart.Product.Price50.ToString("c")</div>
                             </div>
                             <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>@Model.Product.Price100.ToString("c")</div>
+                                <div>@Model.ShoppingCart.Product.Price100.ToString("c")</div>
                             </div>
                         </div>
                         <div class="row pl-2 my-3">
-                            <p class="text-secondary lh-sm">@Html.Raw(Model.Product.Description)</p>
+                            <p class="text-secondary lh-sm">@Html.Raw(Model.ShoppingCart.Product.Description)</p>
                         </div>
                         <div class="row pl-2 mb-3">
                             <div class="col-md-4">
@@ -121,24 +106,84 @@
                                           id="inputGroup-sizing-default">
                                         Count
                                     </span>
-                                    <input asp-for="Count" type="number" value="1" class="form-control text-end"
-                                           aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-
+                                    <input asp-for="ShoppingCart.Count" type="number" class="form-control text-end"
+                                           aria-label="Count" aria-describedby="inputGroup-sizing-default" />
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-6 pb-1">
-                                <button type="submit"
-                                        class="btn btn-primary bg-gradient  w-100 py-2 text-uppercase fw-semibold">
+                                <button type="submit" class="btn btn-primary bg-gradient w-100 py-2 text-uppercase fw-semibold">
                                     Add to Cart
                                 </button>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </form>
+
+<hr class="my-5" />
+<h4 class="text-primary mb-4">Customer Reviews</h4>
+
+@if (Model.Reviews != null && Model.Reviews.Any())
+{
+    foreach (var review in Model.Reviews)
+    {
+        <div class="card mb-3 shadow-sm border-0">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="mb-0 text-dark fw-semibold">@review.ApplicationUser.Name</h6>
+                    <span class="text-warning fw-bold">
+                        @for (int i = 0; i < review.Rating; i++)
+                        {
+                            @:★
+                        }
+                    </span>
+                </div>
+                <p class="mb-0 text-muted">@review.Comment</p>
+            </div>
+        </div>
+    }
+}   
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="card shadow-sm border-0 mt-5">
+        <div class="card-header bg-light">
+            <h5 class="mb-0 text-secondary fw-semibold">Write a Review</h5>
+        </div>
+        <div class="card-body">
+            <form asp-action="AddReview" method="post">
+                <input type="hidden" name="ProductId" value="@Model.ShoppingCart.ProductId" />
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Rating <span class="text-danger">*</span></label>
+                    <select name="Rating" class="form-select" required>
+                        <option value="">Select rating</option>
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <option value="@i">@i ★</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Your Comment <span class="text-danger">*</span></label>
+                    <textarea name="Comment" class="form-control" rows="4" placeholder="Share your experience..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100 fw-semibold">Submit Review</button>
+            </form>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning mt-4">
+        <strong>Note:</strong> You must be <a asp-area="Identity" asp-page="/Account/Login">logged in</a> to submit a review.
+    </div>
+}

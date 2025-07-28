@@ -80,8 +80,6 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
                 //}
                 //productVM.Product.ImageUrl = @"\images\product\" + fileName;
             
-            if (ModelState.IsValid)
-            {
                 if (productVM.Product.Id==0)
                 {
                     _unitOfWork.Product.Add(productVM.Product);
@@ -135,16 +133,6 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
                 TempData["success"] = "Product created/updated successfully";
 
                 return RedirectToAction("Index");
-            }
-            else
-            {
-                productVM.CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
-                {
-                    Text = u.Name,
-                    Value = u.Id.ToString()
-                });
-                return View(productVM);
-            }
         }
 
         public IActionResult DeleteImage(int imageId)
