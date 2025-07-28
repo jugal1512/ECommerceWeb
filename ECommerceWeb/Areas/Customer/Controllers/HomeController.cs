@@ -24,10 +24,10 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
         public IActionResult Index(string searchString, int? categoryId, decimal? minPrice, decimal? maxPrice)
         {
             var products = _unitOfWork.Product.GetAll(includeProperties: "Category,ProductImages");
-
             if (!string.IsNullOrEmpty(searchString))
             {
-                products = products.Where(p => p.Title.Contains(searchString) || p.Author.Contains(searchString));
+                string searchLower = searchString.ToLower();
+                products = products.Where(p => p.Title.ToLower().Contains(searchLower) || p.Author.ToLower().Contains(searchLower));
             }
 
             if (categoryId.HasValue)
