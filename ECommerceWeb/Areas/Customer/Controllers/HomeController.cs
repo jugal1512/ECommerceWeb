@@ -1,16 +1,13 @@
-using BulkyBook.DataAccess.Repository.IRepository;
-using BulkyBook.Models;
-using BulkyBook.Models.ViewModels;
-using BulkyBook.Utility;
+using ECommerce.DataAccess.Repository.IRepository;
 using ECommerce.Models;
 using ECommerce.Models.ViewModels;
+using ECommerce.Utility;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
 
-namespace BulkyBookWeb.Areas.Customer.Controllers
+namespace ECommerceWeb.Areas.Customer.Controllers
 {
     [Area("Customer")]
     public class HomeController : Controller

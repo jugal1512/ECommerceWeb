@@ -1,6 +1,4 @@
-﻿using BulkyBook.Models;
-
-namespace ECommerce.Models.ViewModels
+﻿namespace ECommerce.Models.ViewModels
 {
     public class ProductDetailsVM
     {

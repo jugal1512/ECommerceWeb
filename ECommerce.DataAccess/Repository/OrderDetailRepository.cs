@@ -1,13 +1,8 @@
-﻿using BulkyBook.DataAccess.Data;
-using BulkyBook.DataAccess.Repository.IRepository;
-using BulkyBook.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ECommerce.DataAccess.Data;
+using ECommerce.DataAccess.Repository.IRepository;
+using ECommerce.Models;
 
-namespace BulkyBook.DataAccess.Repository
+namespace ECommerce.DataAccess.Repository
 {
     public class OrderDetailRepository : Repository<OrderDetail>, IOrderDetailRepository
     {

@@ -1,15 +1,10 @@
-﻿using BulkyBook.DataAccess.Data;
-using BulkyBook.Models;
-using BulkyBook.Utility;
+﻿using ECommerce.DataAccess.Data;
+using ECommerce.Models;
+using ECommerce.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BulkyBook.DataAccess.DbInitializer
+namespace ECommerce.DataAccess.DbInitializer
 {
     public class DbInitializer : IDbInitializer
     {
