@@ -1,12 +1,12 @@
-﻿using BulkyBook.DataAccess.Repository.IRepository;
-using BulkyBook.Models;
-using BulkyBook.Models.ViewModels;
-using BulkyBook.Utility;
+﻿using ECommerce.DataAccess.Repository.IRepository;
+using ECommerce.Models;
+using ECommerce.Models.ViewModels;
+using ECommerce.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace BulkyBookWeb.Areas.Admin.Controllers
+namespace ECommerceWeb.Areas.Admin.Controllers
 {
     [Area("admin")]
     [Authorize]

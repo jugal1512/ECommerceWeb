@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
 
-namespace BulkyBook.Utility
+namespace ECommerce.Utility
 {
     public class EmailSender : IEmailSender
     {

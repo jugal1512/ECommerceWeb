@@ -1,9 +1,8 @@
-﻿using BulkyBook.Models;
-using ECommerce.Models;
+﻿using ECommerce.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace BulkyBook.DataAccess.Data
+namespace ECommerce.DataAccess.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
